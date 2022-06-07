@@ -1,0 +1,2 @@
+Patient,Pateint_ID,gender,TIME,date,email,previous_disease,current_medicin,symptoms,signs,diagnosis,treatment,Notes
+zero,6,male,17:17,2022-05-01,new@gmail.com,none,none,ad,muscle problems,ad,ada,adaa

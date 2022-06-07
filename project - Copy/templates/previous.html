@@ -1,0 +1,99 @@
+{% extends "layout.html"%}
+
+{% block title%}
+
+patient details
+
+{% endblock%}
+
+{%block main %}
+{% if data%}
+<form id="mails-form" action="/previous" method="post"></form>
+
+<form action="/previous" method="post">
+
+      <div id="table"  position="absolute" >
+<table class="table" id="example-table">
+    <thead>
+        <tr>
+            <th>Patient</th>
+            <th>Time of treatment</th>
+            <th>Email</th>
+            <th>Patient id</th>
+            <th>Symptoms</th>
+            <th>Previous disease</th>
+            <th>Current medicin</th>
+            <th>Signs</th>
+            <th>Diagnosis</th>
+            <th>Treatment</th>
+            <th>Note&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+            <th>Doctor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for data in data%}
+
+        <tr>
+            <td>
+                <div class="user-info">
+
+                    <div class="user-info__basic">
+                     <input type="hidden" name="id" value="{{data['p_id']}}">   <h5 class="mb-0" name="name">{{data["p_name"][0] | upper}}{{data["p_name"][1:]}}</h5>
+                        <p class="text-muted mb-0">{{data["age"]}} yrs, {{data["gender"][0] | upper}}{{data["gender"][1:]}}</p>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <h6 class="mb-0">{{data["TIME"]}}</h6>
+                <small id="date">{{data["date"]}}</small>
+            </td>
+            <td>
+                <!--test with multible data is yet to occure please delete me when you test it-->
+               <input type="hidden" name="email" value="{{data['p_email']}}" form="mails-form"> <h6 class="mb-0" name="email">{{data["p_email"]}}</h6>
+               <small><input type="submit" name="button" value="Contact" form="mails-form" class="submitLink"/></small>
+            </td>
+            <td>
+                <input type="hidden" name="id" value="{{data['p_id']}}"><h6 class="mb-0">{{data["p_id"]}}</h6>
+            </td>
+            <td>
+                <h5 class="mb-0" name="symp">{{data["symptoms"]}}</h5>
+            </td>
+            <td>
+                <h5 class="mb-0" name="symp">{{data["p_dis"]}}</h5>
+            </td>
+            <td>
+                <h5 class="mb-0" name="symp">{{data["meds"]}}</h5>
+            </td>
+            <td>
+                <h5 class="mb-0" name="symp">{{data["signs"]}}</h5>
+            </td>
+            <td>
+                <h5 class="mb-0" name="symp">{{data["diagnosis"]}}</h5>
+            </td>
+            <td>
+                <h5 class="mb-0" name="symp">{{data["treatment"]}}</h5>
+            </td>
+            <td>
+                <h5 class="mb-0" name="symp">{{data["note"]}}</h5>
+            </td>
+            <td>
+                <h5 class="mb-0" name="symp">Dr. {{data["d_name"][0] | upper }}{{data["d_name"][1:]}}</h5>
+            </td>
+
+        </tr>
+{%endfor%}
+        </form>
+    </tbody>
+</table>
+<button  class="btn btn-lg btn-primary" type="submit" name="button" value="download">Download</button>
+</form>
+
+
+
+{% else %}
+<h3>There is no dates</h3>
+{%endif%}
+{%endblock%}
+
+

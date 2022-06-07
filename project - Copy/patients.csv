@@ -1,0 +1,2 @@
+Patient,Pateint_ID,gender,TIME,date,email,previous_disease,current_medicin,symptoms,signs,diagnosis,treatment,Notes
+zero,5,male,14:13,2022-04-30,rafatmosa73@gmail.com,none,none,nnn,others,n,n,n

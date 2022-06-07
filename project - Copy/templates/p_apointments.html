@@ -1,0 +1,116 @@
+{% extends "layout2.html"%}
+
+{% block title %}
+ My apointment
+{% endblock%}
+
+{% block main %}
+
+<select id="mylist" class="form-select" aria-label="Default select example" onchange="yesnoCheck(this);">
+    <option selected value="other">Filter by the date....</option>
+    {% for data in data2%}
+    <option  value="{{data['date']}}" >{{data["date"]}}</option>
+    {% endfor %}
+  </select>
+
+  <br>
+  <div id="table"  position="absolute" >
+<table class="table">
+<thead>
+    <tr>
+        <th>Patient</th>
+        <th>Status</th>
+        <th>Appointment</th>
+        <th>Doctor Email</th>
+        <th>Doctor</th>
+        <th>Doctor id</th>
+    </tr>
+</thead>
+<tbody>
+    {% for data in data%}
+    <form action="/p_apointments" method="post">
+
+    <tr>
+        <td>
+            <div class="user-info">
+
+                <div class="user-info__basic">
+                    <h5 class="mb-0"  contenteditable="true">{{data["name"]}}</h5>
+                    {%if data["gender"]%}<p class="text-muted mb-0"> {{data["gender"][0] | upper}}{{data["gender"][1:]}}</p>{%endif%}
+                </div>
+            </div>
+        </td>
+        <td>
+            <span class="btn btn-success">{{data["statue"][0] | upper}}{{data["statue"][1:]}}</span>
+        </td>
+        <td>
+            <h6 class="mb-0">{{data["TIME"]}}</h6>
+            <small id="date">{{data["date"]}}</small>
+        </td>
+        <td>
+           <input type="hidden" name="email" value="{{data['d_email']}}"> <h6 class="mb-0">{{data["d_email"]}}</h6>
+            <button name="button" value="else" class="stack" type="submit"><small>Contact</small></a>
+        </td>
+        <td>
+            <h6 class="mb-0">Dr.{{data["doctor"][0] | upper}}{{data["doctor"][1:]}}</h6>
+        </td>
+        <td>
+            <h6 class="mb-0">{{data["d_id"]}}</h6>
+        </td>
+    </tr>
+    </form>
+ {% endfor %}
+</tbody>
+</table>
+</div>
+
+{%endblock%}
+<script type="text/javascript">
+
+function update(that){
+document.getElementById('save').style.visibility = 'visible';
+document.body.onkeyup = function(e){
+if(e.keyCode == 13){
+    document.getElementById('save').style.visibility = 'hidden';
+    //your code
+}
+}
+
+}
+
+
+
+
+function yesnoCheck(that) {
+var input, filter, table, tr, td, i,td2;
+input = document.getElementById("mylist");
+filter = input.value.toUpperCase();
+table = document.getElementById("table");
+tr = table.getElementsByTagName("tr");
+
+
+
+    for (i = 0; i < tr.length; i++) {
+td = tr[i].getElementsByTagName("td")[2];
+
+if (td) {
+  let name_value = td.textContent || td.innerText;
+  name_value = name_value.toUpperCase();
+  if (name_value.indexOf(filter) > -1) {
+    tr[i].style.display = "";   //show
+  } else {
+    tr[i].style.display = "none"; //hide
+  }
+}
+}
+
+
+
+
+}
+
+
+
+
+
+</script>

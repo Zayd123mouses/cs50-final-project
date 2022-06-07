@@ -1,0 +1,391 @@
+{% extends "layout.html"%}
+
+{% block title %}
+Diagnosis
+{% endblock %}
+
+{% block main %}
+<!-- front-end by href:https://www.geeksforgeeks.org/build-a-survey-form-using-html-and-css/-->
+    <!-- Create Form -->
+    <form action="/diagnosis" method="post" id="forms" onsubmit="return checkform(this);">
+
+      <h3>Diagnosis form</h3>
+     <div class="forms-control">
+      <label for="mylist" id="label-list">
+        <b> Patient name and id</b>
+        </label>
+      <select id="mylist" name="mylist" class="form-select" aria-label="Default select example" required onchange="myfunction(this);">
+        <option selected value="other" disabled><b>Patients</b></option>
+        {%for data in data%}
+
+ <option value="{{data['p_id']}}"  id="{{data['p_id']}}" class="{{data['email']}}" name="{{data['name']}}"> ID: {{data['p_id']}}  | Name: {{data['name']}} </option>
+        {% endfor %}
+
+
+
+      </select>
+
+      </div>
+      <hr>
+      <!-- Details -->
+      <div class="forms-control">
+          <label for="name" id="label-name">
+             <b> Name </b>
+          </label>
+
+          <!-- Input Type Text -->
+          <input type="text"
+                 id="name"
+                 placeholder="Enter your name"
+                 name="name"
+                 autocomplete="off"
+                 />
+      </div>
+
+
+      <div class="forms-control">
+          <label for="email" id="label-email">
+            <b> Email </b>
+          </label>
+
+          <!-- Input Type Email-->
+          <input name="email"
+                 type="email"
+                 id="email"
+                 placeholder="Enter your email"
+                 />
+      </div>
+
+
+      <div class="forms-control">
+        <label for="role" id="label-role">
+          <b> Gender </b>
+        </label>
+
+        <!-- Dropdown options -->
+        <select name="role" id="role" required>
+          <option Selected disabled value="other">Select  gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+    </div>
+
+
+      <div class="forms-control">
+          <label for="age" id="label-age">
+            <b> Age </b>
+          </label>
+
+          <!-- Input Type Text -->
+          <input autocomplete="off"
+                 type="number"
+                 name="age"
+                 id="age"
+                 placeholder="Enter your age"
+                 required/>
+      </div>
+
+      <div class="forms-control">
+          <label for="role" id="label-role">
+            <b> Symptoms </b>
+          </label>
+
+          <!-- Dropdown options -->
+          <textarea type="text"
+                 name="symp"
+                 id="age"
+                 placeholder="Enter the symptoms"
+                 rows="4" cols="50"
+                 required/></textarea>
+
+      </div>
+
+      <div class="forms-control" id="previous">
+          <label>
+           <b> Previous diseases</label></b>
+          </label>
+
+          <!-- Input Type Radio Button -->
+          <label for="recommed-1">
+              <input type="radio"
+                     id="recommed-1"
+                     name="recommed" value="yes" onclick="javascript:click();">Yes</input>
+          </label>
+
+
+          <input type="text" placeholder="Type the medications here" style="display:none" name="dis" id="dise">
+          <br style="display:none" id="br">
+
+          <label for="recommed-2">
+              <input type="radio"
+                     id="recommed-2"
+                     name="recommed"
+                     value="no"
+                     onclick="javascript:click();">No</input>
+             </label>
+
+      </div>
+      <hr>
+      <div class="forms-control" id="medication">
+        <label>
+         <b> Currently on medication</label></b>
+        </label>
+
+        <!-- Input Type Radio Button -->
+        <label for="no">
+            <input type="radio"
+                   id="yes"
+                   name="meds" value="yes">Yes</input>
+        </label>
+        <input type="text" placeholder="Type the medications here" style="display:none" name="medss" id="medss">
+        <br style="display:none" id="br2">
+        <label for="no">
+
+            <input type="radio"
+                   id="no"
+                   name="meds" value="no" >No</input>
+
+    </div>
+    <hr>
+
+
+
+
+
+      <div class="forms-control" id="signs">
+          <label> <b>Patient Shows signs of:</b>
+              <small>(Check all that apply)</small>
+          </label>
+          <!-- Input Type Checkbox -->
+
+              <input type="checkbox"
+                     name="inp" value="Cardiac problems">Cardiac problems</input>
+                     <label for="inp-2">
+                       </label>
+              <input type="checkbox"
+                     name="inp" value="Kidney diseases" id="kidney">Kidney diseases</input>
+          <label for="inp-3"> </label>
+              <input type="checkbox"
+                     name="inp" value="Endocrine problems">Endocrine problems</input>
+          <label for="inp-4"></label>
+              <input type="checkbox"
+                     name="inp" value="psychological problems">psychological problems</input>
+          <label for="inp-5"></label>
+              <input type="checkbox"
+                     name="inp" value="Muscle probelms">Muscle probelms</input>
+          <label for="inp-6"></label>
+              <input type="checkbox"
+                     name="inp" value="Nerve injuries">Nerve injuries</input>
+          <label for="inp-7"></label>
+              <input type="checkbox"
+                     name="inp" value="Congenital defects">Congenital defects</input>
+          <label for="inp-7"></label>
+              <input type="checkbox"
+                     name="inp" value="Bone injury">Bone injury</input>
+          <label for="inp-7"></label>
+              <input type="checkbox"
+                     name="inp" value="Urinary probelms">Urinary probelms</input>
+                     <label for="inp-7"></label>
+              <input type="checkbox"
+                     name="inp" value="others">Others</input>
+                     <label for="inp-2">
+                    </label>
+      </div>
+
+      <div class="forms-control">
+        <label for="diagnosis">
+            <b>Diagnosis</b>
+        </label>
+
+        <!-- multi-line text input control -->
+        <textarea type="text"
+                 name="diagnosis"
+                 id="diagnosis"
+                 placeholder="Enter your diagnosis here"
+                 rows="4" cols="50"
+                 required/></textarea>
+    </div>
+
+
+    <div class="forms-control">
+      <label for="treatment">
+          <b>Treatment and medication</b>
+      </label>
+
+      <!-- multi-line text input control -->
+      <textarea type="text"
+                 name="treatment"
+                 id="treatment"
+                 placeholder="Enter your treatment here"
+                 rows="4" cols="50"
+                 required/></textarea>
+  </div>
+
+
+      <div class="forms-control">
+          <label for="comment">
+              <b>Any comments or suggestions</b>
+          </label>
+
+          <!-- multi-line text input control -->
+          <textarea type="text"
+                 name="comment"
+                 id="comment"
+                 placeholder="Enter your comment here"
+                 rows="4" cols="50"
+                 required/></textarea>
+      </div>
+
+      <!-- Multi-line Text Input Control -->
+      <button id="buttons" type="submit" value="submit">
+          Save
+      </button>
+  </form>
+
+
+
+  <script type="text/javascript">
+    document.getElementById('yes').onclick = function() {
+    var radios = document.getElementById('yes');
+
+
+    if (radios.checked) {
+      document.getElementById('medss').style.display = "block" ;
+      document.getElementById('br2').style.display = "block" ;
+    }
+    else{
+      document.getElementById('medss').style.display = "none" ;
+    }
+}
+
+document.getElementById('no').onclick = function() {
+    var radios = document.getElementById('yes');
+
+
+    if (radios.checked) {
+      document.getElementById('medss').style.display = "block" ;
+    }
+    else{
+      document.getElementById('medss').style.display = "none" ;
+      document.getElementById('br2').style.display = "none" ;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+document.getElementById('recommed-1').onclick = function() {
+    var radios = document.getElementById('recommed-1');
+
+
+    if (radios.checked) {
+      document.getElementById('dise').style.display = "block" ;
+      document.getElementById('br').style.display = "block" ;
+    }
+    else{
+      document.getElementById('dise').style.display = "none" ;
+    }
+}
+
+document.getElementById('recommed-2').onclick = function() {
+    var radios = document.getElementById('recommed-2');
+
+
+    if (radios.checked) {
+      document.getElementById('dise').style.display = "none" ;
+      document.getElementById('br').style.display = "none" ;
+    }
+    else{
+      document.getElementById('dise').style.display = "block" ;
+    }
+}
+
+
+function myfunction(that){
+let id = that.value;
+let email = document.getElementById(id).className;
+let name = document.getElementById(id).getAttribute("name");
+
+
+document.getElementById('name').value = name;
+document.getElementById('name').setAttribute("disabled", "");
+document.getElementById('email').value = email;
+document.getElementById('email').setAttribute("disabled", "");
+
+}
+
+
+
+function scrolling(id){
+document.getElementById(id).style.backgroundColor = "red";
+
+document.getElementById(id).scrollIntoView({
+    behavior: 'smooth'
+});
+
+setTimeout(function(){
+  document.getElementById(id).style.backgroundColor = "#fff";  // Change the color back to the original
+}, 2000);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+function checkform(form){
+  if(form.mylist.value == "other"){
+    alert("Please select a patient")
+    scrolling("mylist")
+    return false;
+  }
+  if(form.role.value == "other"){
+    alert("Please select a gender")
+    scrolling("role")
+    return false;
+  }
+  if(form.recommed.value == ""){
+  alert("Please choose if you had previous disease")
+  scrolling("previous")
+  return false;
+  }
+  if(form.recommed.value == "yes" && form.dis.value == ""){
+    alert("please enter the previous disease")
+    scrolling("previous")
+    return false;
+  }
+  if(form.meds.value == ""){
+    alert("Please select if there is any current medication")
+    scrolling("medication")
+    return false;
+  }
+  if(form.meds.value == "yes" && form.medss.value == ""){
+    alert("please type the medication")
+    scrolling("medication")
+    return false;
+  }
+
+
+}
+
+
+
+
+
+
+
+  </script>
+
+{% endblock %}

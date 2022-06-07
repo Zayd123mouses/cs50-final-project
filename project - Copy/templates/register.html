@@ -1,0 +1,112 @@
+{%extends "layout.html"%}
+
+
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+
+    <form action="/register" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Username" type="text" required>
+        </div>
+
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="email" name="email" placeholder="Email" type="email" required>
+        </div>
+
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto"  name="password"  id="password" placeholder="Password" type="password" required>
+        </div>
+
+        <div class="mb-3">
+           <input class="form-control mx-auto w-auto"  name="confirmation" id="password_confirm" placeholder="Password (again)" type="password" required oninput="check(this)">
+        </div>
+        <div class="mb-3">
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" value="doc" autocomplete="off" onclick="yesnoCheck();">
+                <label class="btn btn-outline-primary" for="btnradio1">Doctor</label>
+
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" value="pate" autocomplete="off" onclick="hello();">
+                <label class="btn btn-outline-primary" for="btnradio2">Patient</label>
+
+
+              </div>
+            </div>
+
+            <div id="ifyes" style="display:none" class="mb-3">
+                <input type='text' id='yes' name='yes' class="form-control mx-auto w-auto" placeholder="Please type your speciality" >
+                <br>
+                <input type='number' id='exp' name='exp' class="form-control mx-auto w-auto" placeholder="years of working"  >
+            </div>
+
+         <button  class="btn btn-lg btn-primary" onclick=" return myfunction()">Rgister</button>
+    </form>
+
+    <script type="text/javascript">
+
+        function yesnoCheck() {
+            if (document.getElementById('btnradio1').checked) {
+                document.getElementById('ifyes').style.display = 'block';
+            }
+            else
+                document.getElementById('ifyes').style.display = 'none';
+             }
+
+
+    function hello(){
+    if(document.getElementById('btnradio2').checked){
+        document.getElementById('ifyes').style.display = 'none';
+    }
+}
+    function myfunction(){
+        let input = document.getElementById('password').value;
+        let input2 = document.getElementById('password_confirm').value;
+        let username = document.getElementById('username').value;
+        let email = document.getElementById('email').value;
+        let spec = document.getElementById('yes').value;
+        let taken = "{{taken}}"
+
+        if (username == "") {
+            alert("Error: please enter your name!")
+            return false;
+        }
+        if (email == ""){
+            alert("Error: please enter your email")
+            return false;
+        }
+        if(input.length < 6 ) {
+            alert("Error: Password must contain at least six characters!");
+            return false;
+        }
+        if(input2 != input){
+            alert("Error: Password must match")
+            return false
+        }
+        if (!$("input[type='radio']:checked").val()) {
+        alert("Not checked")
+        return false;
+        }
+        if (document.getElementById('btnradio1').checked && spec == ""){
+            alert("Error: please enter your specality")
+            return false;
+        }
+        if (document.getElementById('btnradio1').checked && document.getElementById('exp').value == ""){
+            alert("Error: please enter your experiance")
+            return false;
+        }
+
+        else{
+             Swal.fire(
+            'Good job!',
+            'Your account has been created!',
+            'success')
+            return true;
+        }
+
+    }
+</script>
+
+{% endblock %}

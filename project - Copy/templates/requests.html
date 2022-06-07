@@ -1,0 +1,69 @@
+{% extends "layout.html"%}
+
+{%block title%}
+requests
+{% endblock %}
+{%block main%}
+<!--put it in index.html-->
+{%if data%}
+<h1><b>You have {{data2}} appointment request </b></h1>
+<br>
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th>Patient id</th>
+                <th>Patient name</th>
+                <th>Patient email</th>
+                <th>Statue</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>your answer</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for data in data%}
+
+            <form action="/requests" method="post" id="myform" >
+            <tr>
+             <td>{{data['p_id']}}</td>
+             <td><input type=hidden  name="p_id" value="{{data['p_id']}}">{{data["name"]}}</td>
+             <td><input type=hidden  name="email" value="{{data['email']}}">{{data["email"]}}</td>
+             <td>{{data['statue']}}</td>
+             <td><input type=hidden  name="date" value="{{data['date']}}">{{data["date"]}}</td>
+             <td><input type=hidden  name="time" value="{{data['TIME']}}">{{data["TIME"]}}</td>
+
+             <td>
+                <div class="dropdown open">
+                    <a href="#!" class="px-2" id="triggerId1" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                                <i class="fa fa-ellipsis-v"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="triggerId1">
+                <button  class="dropdown-item" type="submit" name="button" value="yes"><i class="fa fa-pencil mr-1">Accept</i></button>
+                <button class="dropdown-item" name="button" type="submit" value="no"><i class="fa fa-pencil mr-1">Refuse</i></buttton>
+                <button class="dropdown-item" type="submit" name="button" value="edit"><i class="fa fa-pencil mr-1"></i>Accept & edit time</button>
+                </div>
+            </div>
+                </td>
+            </tr>
+           </form>
+            {% endfor%}
+
+        </tbody>
+    </table>
+{%else%}
+
+
+        <h3>You do not have any appointment requests</h3>
+            <i class="fa fa-bell"></i>
+            <p class="r3 px-md-5 px-sm-1">Check if you have appointments today at the Appointment page</p>
+
+            <div class="text-center mb-3"> <a href="/myday" class="btn btn-primary w-50 rounded-pill b1">Apoointments</a> </div>
+
+{%endif%}
+
+
+
+{% endblock%}
+

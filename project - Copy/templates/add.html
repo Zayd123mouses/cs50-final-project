@@ -1,0 +1,82 @@
+{% extends "layout.html"%}
+
+{% block title %}
+Add patient
+{% endblock %}
+
+{% block main %}
+<form action="/add" method="post" id="forms">
+
+    <h3>Add patient appointment</h3>
+   <div class="forms-control">
+    <label for="mylist" id="label-list">
+      <b> Patient ID</b>
+      </label>
+    <select id="mylist"  name="id" class="form-select" aria-label="Default select example" required>
+        {% for data in data%}
+         <option name="id" value="{{data['p_id']}}"><b>{{data['p_id']}}</b></option>
+      {%endfor%}
+
+
+
+
+    </select>
+
+    </div>
+    <hr>
+    <!-- Details -->
+    <div class="forms-control">
+        <label for="time" id="label-time">
+           <b> time </b>
+        </label>
+
+        <!-- Input Type Text -->
+        <input type="time"
+               id="time"
+               placeholder="Enter new time"
+               name="time"
+               autocomplete="off"
+               min="09:00" max="18:00"
+               required
+               />
+    </div>
+
+
+    <div class="forms-control">
+        <label for="date" id="label-date">
+          <b> Date </b>
+        </label>
+
+        <!-- Input Type Email-->
+        <input name="date"
+               type="date"
+               id="date"
+               placeholder="Enter new date"
+               class="dates" min="{{d3}}"  max="2023-08-31"  defaultValue="2022-08-01"
+                required/>
+               <br>
+
+               <hr>
+             <h5> You have apointments at these dates:             </h5>
+             <br>
+             {%for data in data2%}
+             <h6>Patient ID: {{data["p_id"]}} /Time: {{data["TIME"]}} Date: {{data["date"]}}</h6>
+             <hr>
+             {% endfor %}
+
+
+
+    <button id="buttons" type="submit" value="submit">
+      Save
+  </button>
+  </form>
+
+
+  <script type="text/javascript">
+
+
+
+  </script>
+
+
+{%endblock%}

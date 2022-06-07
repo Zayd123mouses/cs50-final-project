@@ -1,0 +1,79 @@
+<!-- this front end inspired by href "https://www.youtube.com/watch?v=p-keWQmAHSQ"-->
+
+{% extends "layout.html"%}
+
+{% block title%}
+LOGIN
+{% endblock %}
+
+
+{% block main%}
+<div  style = "position:absolute ; right:1100px; bottom:120px">
+<h5 >Appointment scheduler</h5>
+<p >Schedual apointment,send<br>
+patient reminder  via <br>email,
+reschedual apointment</p>
+<br>
+<h5>Go paperless</h5>
+
+<p>Degitize medical records of the <br> patients including <br> treatment and medical documents</p>
+<br>
+
+<h5>Update patient details</h5>
+
+<p>Add/Update medical history and <br>all vital health stats of patient with <br> a single click</p>
+
+</div>
+
+
+<div style = "position:absolute ; left:600px; top:110px">
+<h2 style="color:#34568b;">Dr50 Health</h2>
+<p>Manage your patients health documents with simplified management software system. </p>
+
+<form action="/login" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto"  name="username" placeholder="Username" type="text" required>
+        </div>
+
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto"  name="email" placeholder="Email" type="email" required>
+        </div>
+
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto"  name="password"  id="password" placeholder="Password" type="password" required>
+        </div>
+        <div class="mb-3">
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" value="doc" autocomplete="off" >
+            <label class="btn btn-outline-primary" for="btnradio1">Doctor</label>
+
+
+
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" value="pate" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnradio2">Patient</label>
+          </div>
+        </div>
+
+         <button  class="btn btn-lg btn-primary" onclick=" return myfunction()">Login</button>
+         <a href="/forgot">Forget password?</a>
+         <br>
+         <br>
+         <h6>New user?</h6>
+         <a href="/register">Creat An Account</a>
+
+    </form>
+    </div>
+
+
+
+    <script type="text/javascript">
+        function myfunction(){
+            if (!$("input[type='radio']:checked").val()) {
+        alert("Error:please choose your role!")
+        return false;
+        }
+        }
+
+    </script>
+
+{% endblock %}}

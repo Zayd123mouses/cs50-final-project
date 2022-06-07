@@ -1,0 +1,91 @@
+{% extends "layout2.html" %}
+
+{%block title %}
+apointment
+{% endblock %}
+
+{%block main %}
+
+    <select id="mylist" class="form-select" aria-label="Default select example" onchange="yesnoCheck(this);">
+        <option selected value="other">What type of specialist do you need?</option>
+        {%for data in data%}
+        <option  value="{{data['spec']}}" name="{{data['id']}}">{{data["spec"]}}</option>
+        {%endfor%}
+      </select>
+
+      <div id="table" style="visibility:visible">
+      <table  class="table table-striped table-hover">
+      <thead>
+          <tr>
+              <th>Doctor ID</th>
+              <th>Doctor name</th>
+              <th>Specality</th>
+              <th>Experience</th>
+              <th>time</th>
+              <th>Date</th>
+              <th>Book an apointment</th>
+          </tr>
+      </thead>
+        <br>
+      <tbody>
+        {%for data in data2%}
+        <form action="/bookapoint" method="post" id="form">
+            <tr>
+                <td ><input type=hidden id="id" name="id" value="{{data['id']}}">{{data["id"]}} </td>
+
+           <td >{{data["name"]}}</td>
+           <td id="raw" value="{{data['spec']}}">{{data["spec"]}}</td>
+           <td>{{data["exp"]}}</td>
+           <td><input class="form-control mx-auto w-auto" type="time" min="09:00" max="18:00" required  name="time" id="time"><small>Office time from 9 AM to 6 PM</small></td>
+           <td><input class="form-control mx-auto w-auto" name="date"d type="date" id="date" required class="dates" min="{{d3}}"  max="2023-08-31"  defaultValue="2022-08-01" ><small>Everyday</small></td>
+           <input id="book_id" name="book_id" type="hidden" value="{{data['id']}}">
+           <td><button class="btn btn-lg btn-primary" id="book" type="submit" name="button" value="{{data['id']}}"> Request apointment</button> </td>
+          </tr>
+           </form>
+        {%endfor%}
+
+      </tbody>
+
+  </table>
+</div>
+
+<script type="text/javascript">
+  function yesnoCheck(that) {
+    var input, filter, table, tr, td, i,td2;
+    input = document.getElementById("mylist");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("table");
+    tr = table.getElementsByTagName("tr");
+
+    if (that.value == "other") {
+      for (i = 0; i < tr.length; i++) {
+        document.getElementById("table").style.visibility = "visible";
+        tr[i].style.display = "";   //show
+      }
+    }
+    else {
+        document.getElementById("table").style.visibility = "visible";
+        for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+
+    if (td) {
+      let name_value = td.textContent || td.innerText;
+      name_value = name_value.toUpperCase();
+      if (name_value.indexOf(filter) > -1) {
+        tr[i].style.display = "";   //show
+      } else {
+        tr[i].style.display = "none"; //hide
+      }
+    }
+  }
+    }
+
+
+
+}
+
+
+
+</script>
+
+{%endblock%}

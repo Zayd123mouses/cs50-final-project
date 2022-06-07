@@ -1,0 +1,190 @@
+/* Size for brand */
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
+
+/* Colors for brand */
+nav .navbar-brand .blue
+{
+    color: #537fbe;
+}
+nav .navbar-brand .red
+{
+    color: #ea433b;
+}
+nav .navbar-brand .yellow
+{
+    color: #f5b82e;
+}
+nav .navbar-brand .green
+{
+    color: #2e944b;
+}
+
+.alert {
+    padding: 20px;
+    background-color: BLUE; /* Red */
+    color: white;
+    margin-bottom: 15px;
+  }
+
+  /* The close button */
+  .closebtn {
+    margin-left: 15px;
+    color: black;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  /* When moving the mouse over the close button */
+  .closebtn:hover {
+    color: black;
+  }
+
+body {
+  background-color:#f8f9fa;
+
+}
+
+
+
+.T{
+  font-size: larger;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  width: 50%;
+}
+
+.I {
+  width: 50%;
+}
+table {
+  border-collapse: collapse;
+}
+
+.SS {
+  font-size: x-large;
+  font-weight: 1000;
+  font-family: Comic Sans MS;
+}
+
+.CD {
+  font-weight: normal;
+  font-size: initial;
+}
+
+
+.nav-link .badge {
+  position: absolute;
+  top: 15px;
+  right: 1165px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+}
+
+.custom-select .custom-select-sm{
+  top: 100px;
+  right: 100px;
+
+}
+
+
+/* href:https://www.geeksforgeeks.org/build-a-survey-form-using-html-and-css/*/
+
+#forms {
+  background-color: #fff;
+  max-width: 3000px;
+
+  padding: 30px 20px;
+  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Styling form-control Class */
+.forms-control {
+  text-align: left;
+  margin-bottom: 25px;
+}
+
+/* Styling form-control Label */
+.forms-control label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Styling form-control input,
+select, textarea */
+.forms-control input,
+.forms-control select,
+.forms-control textarea {
+  border: 1px solid #777;
+  border-radius: 2px;
+  font-family: inherit;
+  padding: 10px;
+  display: block;
+  width: 95%;
+}
+
+/* Styling form-control Radio
+button and Checkbox */
+.forms-control input[type="radio"],
+.forms-control input[type="checkbox"] {
+  display: inline-block;
+  width: auto;
+}
+
+/* Styling Button */
+#buttons {
+  background-color: #7B68EE;
+  border: 1px solid #777;
+  border-radius: 2px;
+  font-family: inherit;
+  font-size: 21px;
+  display: block;
+  width: 100%;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.vl {
+  border-left: 1px solid black;
+  height: 500px;
+position: absolute;
+     margin-left: 30em;
+     top: 20%;
+}
+
+.stack {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  /*optional*/
+  font-family: arial, sans-serif;
+  /*input has OS specific font-family*/
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/*stackoverflow*/
+.submitLink {
+  background-color: transparent;
+  text-decoration: underline;
+  border: none;
+  color: blue;
+  cursor: pointer;
+}
+.submitLink:focus {
+  outline: none;
+}
+
+/*https://codepen.io/ZachSaucier/pen/kPLeoZ*/
+
+
+html { font-size: 120%; }
+

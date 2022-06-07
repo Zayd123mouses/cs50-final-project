@@ -1,0 +1,103 @@
+{% extends "layout2.html"%}
+
+{% block title %}
+ History
+{% endblock%}
+
+{% block main %}
+
+{% if data%}
+
+
+      <div id="table"  position="absolute" >
+
+<table class="table" id="example-table">
+    <thead>
+        <tr>
+            <th>Patient</th>
+            <th>Time of treatment</th>
+            <th>Email</th>
+            <th>Patient id</th>
+            <th>Symptoms</th>
+            <th>Previous disease</th>
+            <th>Current medicin</th>
+            <th>Signs</th>
+            <th>Diagnosis</th>
+            <th>Treatment</th>
+            <th>Note&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+            <th>Doctor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+            <th>Doctor email</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for data in data%}
+        <form action="/history" method="post">
+
+        <tr>
+            <td>
+                <div class="user-info">
+
+                    <div class="user-info__basic">
+                        <h5 class="mb-0" name="name">{{data["p_name"]}}</h5>
+                        <p class="text-muted mb-0">{{data["age"]}} yrs, {{data["gender"][0] | upper}}{{data["gender"][1:]}}</p>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <h6 class="mb-0">{{data["TIME"]}}</h6>
+                <small id="date">{{data["date"]}}</small>
+            </td>
+            <td>
+                <input type="hidden" name="p_email" value="{{data['p_email']}}"><h6 class="mb-0" name="email">{{data["p_email"]}}</h6>
+                <button name="button" value="p_email" class="stack" type="submit"><small>Contact</small></a>
+            </td>
+            <td>
+                <input type="hidden" name="id" value="{{data['p_id']}}"><h6 class="mb-0">{{data["p_id"]}}</h6>
+            </td>
+            <td>
+                <h5 class="mb-0" name="symp">{{data["symptoms"]}}</h5>
+            </td>
+            <td>
+                <h5 class="mb-0" name="symp">{{data["p_dis"]}}</h5>
+            </td>
+            <td>
+                <h5 class="mb-0" name="symp">{{data["meds"]}}</h5>
+            </td>
+            <td>
+                <h5 class="mb-0" name="symp">{{data["signs"]}}</h5>
+            </td>
+            <td>
+                <h5 class="mb-0" name="symp">{{data["diagnosis"]}}</h5>
+            </td>
+            <td>
+                <h5 class="mb-0" name="symp">{{data["treatment"]}}</h5>
+            </td>
+            <td>
+                <h5 class="mb-0" name="symp">{{data["note"]}}</h5>
+            </td>
+            <td>
+                <h5 class="mb-0" name="symp">{{data["d_name"]}}</h5>
+            </td>
+            <td>
+                <input type="hidden" name="d_email" value="{{data['d_email']}}">  <h6 class="mb-0" name="email">{{data["d_email"]}}</h6>
+                <button name="button" value="d_email" class="stack" type="submit"><small>Contact</small></a>
+            </td>
+
+        </tr>
+        </form>
+     {% endfor %}
+    </tbody>
+</table>
+
+
+
+{% else %}
+<h3>There is no dates</h3>
+{%endif%}
+
+
+
+{% endblock %}
+
+

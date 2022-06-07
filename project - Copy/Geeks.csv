@@ -1,0 +1,55 @@
+,"
+",Patient,"
+",Time of treatment,"
+",Email,"
+",Patient id,"
+",Symptoms,"
+",Previous disease,"
+",Current medicin,"
+",Signs,"
+",Diagnosis,"
+",Treatment,"
+",Note     ,"
+"
+0,"
+","
+
+
+{{data[""name""]}}
+{{data[""age""]}} yrs, {{data[""gender""][0] | upper}}{{data[""gender""][1:]}}
+
+
+","
+","
+{{data[""TIME""]}}
+{{data[""date""]}}
+","
+","
+{{data[""p_email""]}}
+Contact
+","
+","
+{{data[""p_id""]}}
+","
+","
+{{data[""symptoms""]}}
+","
+","
+{{data[""p_dis""]}}
+","
+","
+{{data[""meds""]}}
+","
+","
+{{data[""signs""]}}
+","
+","
+{{data[""diagnosis""]}}
+","
+","
+{{data[""treatment""]}}
+","
+","
+{{data[""note""]}}
+","
+"

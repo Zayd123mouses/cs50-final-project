@@ -1,0 +1,3 @@
+Patient,Pateint_ID,gender,TIME,date,email,previous_disease,current_medicin,symptoms,signs,diagnosis,treatment,Notes,Doctor_name
+Voldemort Junior,5,male,16:03,2022-08-24,rafatmosa73@gmail.com,none,none,nnn,others,n,n,n,zero
+Voldemort Junior,5,male,10:50,2022-08-24,rafatmosa73@gmail.com,,,Fever with muscle pain,others,flue,rest,none,Adam Hufflebuff

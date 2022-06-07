@@ -1,0 +1,135 @@
+{% extends "layout.html"%}
+
+{% block title%}
+My day
+{% endblock%}
+
+{%block main %}
+{% if data%}
+<select id="mylist" class="form-select" aria-label="Default select example" onchange="yesnoCheck(this);">
+        <option selected value="other">Filter by the name....</option>
+        {% for data in data%}
+        <option  value="{{data['name']}}" >{{data["name"]}}</option>
+        {% endfor %}
+      </select>
+
+      <br>
+      <div id="table"  position="absolute" >
+<table class="table">
+    <thead>
+        <tr>
+            <th>Patient</th>
+            <th>Time of treatment</th>
+            <th>Email</th>
+            <th>Patient id</th>
+            <th>&nbsp;Actions&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for data in data%}
+
+        <form action="/update" method="post">
+
+        <tr>
+            <td>
+                <div class="user-info">
+
+                    <div class="user-info__basic">
+                        <h5 class="mb-0"  contenteditable="true" name="name">{{data["name"]}}</h5>
+                        {%if data["gender"]%}<p class="text-muted mb-0">{{data["age"]}} yrs, {{data["gender"][0] | upper}}{{data["gender"][1:]}}</p>{%endif%}
+                    </div>
+                </div>
+            </td>
+            <td>
+                <h6 class="mb-0">{{data["TIME"]}}</h6>
+                <small id="date">{{data["date"]}}</small>
+            </td>
+            <td>
+               <input type="hidden" name="email" value='{{data["email"]}}'> <h6 class="mb-0" >{{data["email"]}}</h6>
+                <button name="button" value="else" class="stack" type="submit"><small>Contact</small></a>
+
+            </td>
+
+            <td>
+                <input type="hidden" name="id" value="{{data['p_id']}}"><h6 class="mb-0">{{data["p_id"]}}</h6>
+            </td>
+            <td>
+                <div class="dropdown open">
+                    <a href="#!" class="px-2" id="triggerId1" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                                <i class="fa fa-ellipsis-v"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="triggerId1">
+
+                        <button type="submit" class="dropdown-item" value="yours" name="button"><i class="fa fa-pencil mr-1"></i> Your past treatments</button>
+                        <button type="submit" class="dropdown-item" value="edit" name="button"><i class="fa fa-pencil mr-1"></i> Edit your treatment</button>
+                        <button type="submit" class="dropdown-item" value="previous" name="button"><i class="fa fa-pencil mr-1"></i> Medical records</button>
+
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </form>
+
+     {% endfor %}
+    </tbody>
+</table>
+</div>
+
+{% else %}
+<h3>You have not diagnosed any patient yet</h3>
+{%endif%}
+
+<script type="text/javascript">
+
+function update(that){
+    document.getElementById('save').style.visibility = 'visible';
+    document.body.onkeyup = function(e){
+    if(e.keyCode == 13){
+        document.getElementById('save').style.visibility = 'hidden';
+        //your code
+    }
+}
+
+}
+
+
+
+
+function yesnoCheck(that) {
+    var input, filter, table, tr, td, i,td2;
+    input = document.getElementById("mylist");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("table");
+    tr = table.getElementsByTagName("tr");
+
+    if(input.value == 'other'){
+        for (i = 0; i < tr.length; i++) {
+            tr[i].style.display = "";
+        }
+        return true;
+    }
+
+
+        for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+
+    if (td) {
+      let name_value = td.textContent || td.innerText;
+      name_value = name_value.toUpperCase();
+      if (name_value.indexOf(filter) > -1) {
+        tr[i].style.display = "";   //show
+      } else {
+        tr[i].style.display = "none"; //hide
+      }
+    }
+  }
+
+}
+
+
+
+</script>
+
+
+{% endblock %}
