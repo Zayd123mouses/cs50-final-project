@@ -3,6 +3,7 @@ Flask
 Flask-Session
 requests
 flask-mail
-
+gunicorn
+psycopg2
 
 
